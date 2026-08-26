@@ -1,11 +1,33 @@
-<h1 align="center">Hi, I'm ItzAlphabet</h1>
-<h3 align="center">alphabet.is-a.dev</h3>
+# hi, I'm ItzAlphabet.
 
-- I’m currently working on **the fast[...] suite**
+I rewrite unix tools that annoy me and make them stupidly fast, then build tools to prove it. 
 
-- I use Arch btw 
+When I'm not doing that I'm probably outside, or in Minecraft causing problems on anarchy servers.
 
-- Fan of Linux, GNU and open-source
+I'm also known as CallMeAlphabet.
 
-<p align="left"> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> </p>
+## tools
 
+[fasthex](https://github.com/CallMeAlphabet/fasthex)
+<br>
+[fastwc](https://github.com/CallMeAlphabet/fastwc)
+<br>
+[timeit](https://github.com/CallMeAlphabet/timeit)
+<br>
+[fastmc](https://github.com/CallMeAlphabet/fastmc)
+<br>
+[fastcount](https://github.com/CallMeAlphabet/fastcount)
+<br>
+[fastannoy](https://github.com/CallMeAlphabet/fastannoy)
+<br>
+
+
+all tools are open source under Apache 2.0, available on the [AUR](https://aur.archlinux.org/packages?K=CallMeAlphabet&SeB=m) and crates.io, with pre-built binaries for x86_64 and aarch64.
+
+## stack
+
+arch linux · fish · foot · hyprland · rust · nano / intellij
+
+## elsewhere
+
+[alphabet.is-a.dev](https://alphabet.is-a.dev) · discord: itzalphabet · [reddit: u/ItzAlphabet](https://reddit.com/u/ItzAlphabet)
