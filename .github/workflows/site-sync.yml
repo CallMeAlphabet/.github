@@ -21,6 +21,7 @@ jobs:
       - name: Read the live site
         run: |
           python3 - <<'PY'
+          import hashlib
           import json
           import os
           import re
@@ -45,6 +46,8 @@ jobs:
           build_id = str(build.get("id") or "000000")
           sha = str(build.get("sha") or "unknown")
           content = str(stamp.get("stamp") or "0")
+          asset = Path("profile/assets/sky-preview.webp")
+          version = build_id + "-" + hashlib.sha256(asset.read_bytes()).hexdigest()[:7]
 
           path = Path("profile/README.md")
           text = path.read_text()
@@ -62,7 +65,7 @@ jobs:
           assert hits == 1, "live line marker missing"
           text, hits = re.subn(
               r"(sky-preview\.(?:webp|gif)\?v=)[^\"'\s)]+",
-              lambda match: match.group(1) + build_id,
+              lambda match: match.group(1) + version,
               text,
               count=1,
           )
