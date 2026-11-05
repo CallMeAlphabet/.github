@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://alphabet.is-a.dev"><img src="./assets/sky-preview.svg?v=24gzq4" width="720" alt="A preview of alphabet.is-a.dev: a night sky with twinkling stars, drifting pixel clouds, four flapping birds, fading auroras, a moon and a shooting star, behind the ItzAlphabet homepage hero."></a>
+  <a href="https://alphabet.is-a.dev"><img src="https://raw.githubusercontent.com/CallMeAlphabet/.github/main/profile/assets/sky-preview.svg?v=24gzq4" width="720" alt="A preview of alphabet.is-a.dev: a night sky with twinkling stars, drifting pixel clouds, four flapping birds, fading auroras, a moon and a shooting star, behind the ItzAlphabet homepage hero."></a>
 </div>
 
 I rewrite unix tools that annoy me and make them stupidly fast, then build tools to prove it. No résumé, no headshot, just the stuff I've built.
