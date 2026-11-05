@@ -23,7 +23,6 @@ jobs:
           python3 - <<'PY'
           import hashlib
           import json
-          import os
           import re
           import urllib.request
           from pathlib import Path
@@ -46,14 +45,27 @@ jobs:
           build_id = str(build.get("id") or "000000")
           sha = str(build.get("sha") or "unknown")
           content = str(stamp.get("stamp") or "0")
-          asset = Path("profile/assets/sky-preview.webp")
-          version = build_id + "-" + hashlib.sha256(asset.read_bytes()).hexdigest()[:7]
 
           path = Path("profile/README.md")
           text = path.read_text()
+          previous = re.search(r"<!-- home:\n(.*?)\n-->", text, flags=re.S)
+          stored = previous.group(1) if previous else ""
+
+          try:
+              home = str(get("/api/home").get("home") or "")
+          except Exception as error:
+              print("home endpoint unavailable ({}); keeping stored text".format(error))
+              home = stored
+
+          safe = home.replace("-->", "-- >").strip()
+          home_hash = hashlib.sha256(safe.encode()).hexdigest()[:7]
+          asset = Path("profile/assets/sky-preview.webp")
+          digest = hashlib.sha256(asset.read_bytes() + b"\0" + safe.encode()).hexdigest()[:7]
+          version = build_id + "-" + digest
+
           line = (
-              "<!-- live: › live from alphabet.is-a.dev · build `{}` · `{}` · content `{}` -->"
-              .format(build_id, sha, content)
+              "<!-- live: › live from alphabet.is-a.dev · build `{}` · `{}` · content `{}` · home `{}` -->"
+              .format(build_id, sha, content, home_hash)
           )
           text, hits = re.subn(
               r"^<!-- live: .*?-->$",
@@ -63,15 +75,26 @@ jobs:
               flags=re.M,
           )
           assert hits == 1, "live line marker missing"
+
+          block = "<!-- home:\n" + safe + "\n-->"
           text, hits = re.subn(
-              r"(sky-preview\.(?:webp|gif)\?v=)[^\"'\s)]+",
+              r"<!-- home:.*?-->",
+              lambda match: block,
+              text,
+              count=1,
+              flags=re.S,
+          )
+          assert hits == 1, "home text marker missing"
+
+          text, hits = re.subn(
+              r"(sky-preview\.webp\?v=)[A-Za-z0-9-]+",
               lambda match: match.group(1) + version,
               text,
               count=1,
           )
           assert hits == 1, "image cache-buster missing"
           path.write_text(text)
-          print("synced {} {} {}".format(build_id, sha, content))
+          print("synced {} {} {} home {}".format(build_id, sha, content, home_hash))
           PY
 
       - name: Commit if changed
@@ -83,5 +106,5 @@ jobs:
           git config user.name "CallMeAlphabet"
           git config user.email "sigma.alphabet@proton.me"
           git add profile/README.md
-          git commit -m "sync live build from alphabet.is-a.dev"
+          git commit -m "sync live build and home text from alphabet.is-a.dev"
           git push
