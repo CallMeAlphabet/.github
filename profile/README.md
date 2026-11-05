@@ -1,19 +1,5 @@
 <div align="center">
-  <a href="https://alphabet.is-a.dev"><img src="https://raw.githubusercontent.com/CallMeAlphabet/.github/main/profile/assets/sky-preview.svg?v=24gzq4" width="720" alt="A preview of alphabet.is-a.dev: a night sky with twinkling stars, drifting pixel clouds, four flapping birds, fading auroras, a moon and a shooting star, behind the ItzAlphabet homepage hero."></a>
+  <a href="https://alphabet.is-a.dev"><img src="https://raw.githubusercontent.com/CallMeAlphabet/.github/main/profile/assets/sky-preview.webp?v=0l0dlt" width="760" alt="The alphabet.is-a.dev homepage, animated: a pixel night sky with drifting clouds, flapping birds, auroras, a moon, rain, snow, storms and a dark ridge of pine trees, behind the ItzAlphabet hero and bio."></a>
 </div>
 
-I rewrite unix tools that annoy me and make them stupidly fast, then build tools to prove it. No résumé, no headshot, just the stuff I've built.
-
-When I'm not doing that I'm probably outside, ragebaiting people in Minecraft, working on my own hacked client, or solving Connect 4.
-
-Most of what I make is open source on [GitHub](https://github.com/CallMeAlphabet). Start with [projects](https://alphabet.is-a.dev/projects) if you want the receipts.
-
-I'm also known as CallMeAlphabet.
-
----
-
-› live from alphabet.is-a.dev · build `24gzq4` · `a6382bf` · content `4`
-
----
-
-discord: itzalphabet · [reddit: u/ItzAlphabet](https://reddit.com/u/ItzAlphabet) · [alphabet.is-a.dev](https://alphabet.is-a.dev)
+<!-- live: › live from alphabet.is-a.dev · build `0l0dlt` · `f27dd97` · content `4` -->

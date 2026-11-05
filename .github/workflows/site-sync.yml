@@ -49,11 +49,11 @@ jobs:
           path = Path("profile/README.md")
           text = path.read_text()
           line = (
-              "› live from alphabet.is-a.dev · build `{}` · `{}` · content `{}`"
+              "<!-- live: › live from alphabet.is-a.dev · build `{}` · `{}` · content `{}` -->"
               .format(build_id, sha, content)
           )
           text, hits = re.subn(
-              r"^› live from alphabet\.is-a\.dev.*$",
+              r"^<!-- live: .*?-->$",
               line,
               text,
               count=1,
@@ -61,7 +61,7 @@ jobs:
           )
           assert hits == 1, "live line marker missing"
           text, hits = re.subn(
-              r"(sky-preview\.svg\?v=)[^\"'\s)]+",
+              r"(sky-preview\.(?:webp|gif)\?v=)[^\"'\s)]+",
               lambda match: match.group(1) + build_id,
               text,
               count=1,
