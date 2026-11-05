@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Only the latest released version of this tool is supported.
+Only the latest released version of this project is supported.
 
 ## Reporting a Vulnerability
 
@@ -14,13 +14,4 @@ Report via:
 - Email: callmeletters@gmail.com
 
 I'll respond as quickly as I can. For valid vulnerabilities I'll issue a
-fix and credit you in the release notes if you'd like.
-
-## Scope
-
-These are CLI tools that run with your own user permissions on your own
-data. The attack surface is narrow, but things worth reporting include:
-
-- Unsafe memory handling (buffer overflows, use-after-free)
-- Incorrect output that could cause data loss in a pipeline
-- SIMD paths producing different results than the scalar fallback
+fix and credit you in the commit if you'd like.
