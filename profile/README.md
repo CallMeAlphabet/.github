@@ -1,8 +1,8 @@
 <div align="center">
-  <a href="https://alphabet.is-a.dev"><img src="https://raw.githubusercontent.com/CallMeAlphabet/.github/main/profile/assets/sky-preview.webp?v=b6c3a6-16e2998" width="760" alt="The alphabet.is-a.dev homepage, animated: a clear pixel night sky with drifting clouds, flapping birds, auroras, a moon, twinkling stars and a dark ridge of pine trees, behind the ItzAlphabet hero and bio."></a>
+  <a href="https://alphabet.is-a.dev"><img src="https://raw.githubusercontent.com/CallMeAlphabet/.github/main/profile/assets/sky-preview.webp?v=uo0l58-16e2998" width="760" alt="The alphabet.is-a.dev homepage, animated: a clear pixel night sky with drifting clouds, flapping birds, auroras, a moon, twinkling stars and a dark ridge of pine trees, behind the ItzAlphabet hero and bio."></a>
 </div>
 
-<!-- live: › live from alphabet.is-a.dev · build `b6c3a6` · `03e954d` · content `4` · home `e768965` -->
+<!-- live: › live from alphabet.is-a.dev · build `uo0l58` · `6e76183` · content `4` · home `e768965` -->
 
 <!-- home:
 I rewrite unix tools that annoy me and make them stupidly fast, then build tools to prove it. No résumé, no headshot, just the stuff I've built.
