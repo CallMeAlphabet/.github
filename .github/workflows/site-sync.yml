@@ -1,0 +1,84 @@
+name: site-sync
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the live site
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import urllib.request
+          from pathlib import Path
+
+          def get(path):
+              req = urllib.request.Request(
+                  "https://alphabet.is-a.dev" + path,
+                  headers={"User-Agent": "site-sync/1"},
+              )
+              with urllib.request.urlopen(req, timeout=15) as response:
+                  return json.load(response)
+
+          try:
+              build = get("/api/build")
+              stamp = get("/api/content-stamp")
+          except Exception as error:
+              print("site unreachable ({}); leaving README alone".format(error))
+              raise SystemExit(0)
+
+          build_id = str(build.get("id") or "000000")
+          sha = str(build.get("sha") or "unknown")
+          content = str(stamp.get("stamp") or "0")
+
+          path = Path("profile/README.md")
+          text = path.read_text()
+          line = (
+              "› live from alphabet.is-a.dev · build `{}` · `{}` · content `{}`"
+              .format(build_id, sha, content)
+          )
+          text, hits = re.subn(
+              r"^› live from alphabet\.is-a\.dev.*$",
+              line,
+              text,
+              count=1,
+              flags=re.M,
+          )
+          assert hits == 1, "live line marker missing"
+          text, hits = re.subn(
+              r"(sky-preview\.svg\?v=)[^\"'\s)]+",
+              lambda match: match.group(1) + build_id,
+              text,
+              count=1,
+          )
+          assert hits == 1, "image cache-buster missing"
+          path.write_text(text)
+          print("synced {} {} {}".format(build_id, sha, content))
+          PY
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- profile/README.md; then
+            echo "already current"
+            exit 0
+          fi
+          git config user.name "CallMeAlphabet"
+          git config user.email "sigma.alphabet@proton.me"
+          git add profile/README.md
+          git commit -m "sync live build from alphabet.is-a.dev"
+          git push
